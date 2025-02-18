@@ -20,7 +20,7 @@ In this report, we examine what factors predict a cricket's chirp rate.
 
 ```{r summary, echo = FALSE}
 summary(crickets)
-ggplot(crickets, aes(x = rate)) +
+ggplot(crickets, aes(x = rate,fill = species)) +
   geom_histogram(bins = 8) + 
   ggtitle("Distribution of the chirp rate of crickets") +
   xlab('Chirp rate (per min.)')
@@ -61,3 +61,12 @@ summary.lm(species_lm)
 ```
 
 The exclamations have a higher chirp rate and a greater maximum temperature. Niveus chirp rate is greater at lower temperatures.
+
+## Interactions
+
+```{r species historgram, echo = FALSE}
+ggplot(crickets, aes(x = rate, fill = species)) +
+  geom_histogram(position = 'identity', alpha = 0.7, bins = 8) + 
+  ggtitle("Distribution of the chirp rate of crickets") +
+  xlab('Chirp rate (per min.)')
+```
