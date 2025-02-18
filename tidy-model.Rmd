@@ -1,0 +1,131 @@
+---
+title: "tidy-model"
+output: html_document
+---
+## Introduction
+
+This R Markdown document demonstrates my abilities to use models for data analysis using a data set collected on crickets.
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library('tidyverse') ; library('modeldata')
+``` 
+
+```{r load data, include = FALSE}
+data(crickets, package = "modeldata")
+names(crickets)
+```
+
+## What is that sound?
+In this report, we examine what factors predict a cricket's chirp rate.
+
+```{r summary, echo = FALSE}
+summary(crickets)
+ggplot(crickets, aes(x = rate,fill = species)) +
+  geom_histogram(bins = 8) + 
+  ggtitle("Distribution of the chirp rate of crickets") +
+  xlab('Chirp rate (per min.)')
+```
+
+There is 14 exclamations and 17 niveus. The minimum temperature is 17.20, and the maximum temperature is 30.40. The mean rate of chirping is 72.89 
+
+## Temperature affects chirp rate
+
+```{r temp, echo= FALSE}
+ggplot(crickets, aes(x = temp, y = rate)) +
+  geom_point() + 
+  geom_smooth(method = 'lm') +
+  ggtitle("Plot of temperature and chirp rate") +
+  ylab('Chirp rate (per min.)') +
+  xlab('Temperature (Celsius)')
+
+temp_lm <- lm(rate ~ temp, crickets)
+
+summary.lm(temp_lm)
+```
+
+Based on a scatter plot of temperature and chirping and a correlation test, it seems that as temperature increases one degree, the rate of chirping increases about 4.2 chirps per minute.
+
+## Species-specific effects of temperature on chirping
+```{r species, echo= FALSE}
+ggplot(crickets, aes(x = temp, y = rate, color = species)) +
+  geom_point() + 
+  geom_smooth(method = 'lm') +
+  ggtitle("Plot of temperature and chirp rate for two species of crickets") +
+  ylab('Chirp rate (per min.)') +
+  xlab('Temperature (Celsius)')
+  
+  
+species_lm <- lm(rate ~ temp + species, crickets)
+
+summary.lm(species_lm)
+```
+
+The exclamations have a higher chirp rate and a greater maximum temperature. Niveus chirp rate is greater at lower temperatures.
+
+## Interactions
+
+```{r interactions, echo= FALSE}
+ggplot(crickets, aes(x = temp, y = rate, color = species)) +
+  geom_point() + 
+  geom_smooth(method = 'lm') +
+  ggtitle("Plot of temperature and chirp rate for two species of crickets") +
+  ylab('Chirp rate (per min.)') +
+  xlab('Temperature (Celsius)')
+  
+species_x_temp_lm <- lm(rate ~ temp + species + temp:species, crickets) 
+summary.lm(species_x_temp_lm)
+
+anova(species_lm, species_x_temp_lm)
+```
+
+## Load the data
+```{r diamonds, echo=FALSE}
+library(ggplot2)
+
+data(diamonds)  
+head(diamonds) 
+```
+
+## Distribution of the price 
+```{r prices, echo=FALSE}
+ggplot(diamonds, aes(x = price)) +
+  geom_histogram(bins = 50, fill = "blue", color = "black") +
+  ggtitle("Distribution of Diamond Prices") +
+  xlab("Price") +
+  theme_minimal()
+``` 
+
+## Correaltion Between Price and Carrat 
+```{r carrat, echo=FALSE}
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "blue") +
+  ggtitle("Diamond Price vs. Carat") +
+  xlab("Carat") +
+  ylab("Price") +
+  theme_minimal()
+
+```
+
+The carat of the diamond does not fully dictate the price of the diamond, as other factors such as cut, clarity, and color can also determine its value
+
+## Price Distribution by Diamond Cut and Carrat
+```{r car, echo=FALSE}
+
+ggplot(diamonds, aes(x = carat, y = price, color = cut )) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm") +
+  ggtitle("Price Distribution by Diamond Cut and Carrat") +
+  xlab("Carat") +
+  ylab("Price") +
+  theme_minimal()
+
+
+# summary 
+sum <- lm(price ~ carat + cut + clarity, data = diamonds)
+summary.lm(sum)
+anova(species_lm, species_x_temp_lm)
+
+```
+
+In this graph, we can see that Ideal is the best type of cut to get, as it tends to cost the most, even when the carat is lower compared to another diamond with a different cut
