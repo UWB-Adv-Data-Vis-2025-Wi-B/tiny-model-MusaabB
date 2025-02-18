@@ -22,5 +22,5 @@ In this report, we examine what factors predict a cricket's chirp rate.
 summary(crickets)
 ``` 
 
-
+There is 14 exclamations and 17 niveous. The minimum temperature is 17.20, and the maximum temperature is 30.40. The mean rate of chirping is 72.89 
 
