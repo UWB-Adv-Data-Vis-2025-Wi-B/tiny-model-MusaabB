@@ -85,3 +85,14 @@ library(ggplot2)
 data(diamonds)  
 head(diamonds) 
 ```
+
+## Distribution of the price 
+```{r prices, echo=FALSE}
+ggplot(diamonds, aes(x = price)) +
+  geom_histogram(bins = 50, fill = "blue", color = "black") +
+  ggtitle("Distribution of Diamond Prices") +
+  xlab("Price") +
+  theme_minimal()
+
+
+``` 
