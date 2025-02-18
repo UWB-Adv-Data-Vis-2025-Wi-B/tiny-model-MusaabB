@@ -93,6 +93,16 @@ ggplot(diamonds, aes(x = price)) +
   ggtitle("Distribution of Diamond Prices") +
   xlab("Price") +
   theme_minimal()
-
-
 ``` 
+
+## Correaltion Between Price and Carrat 
+```{r carrat, echo=FALSE}
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point() +
+  geom_smooth(method = "lm", color = "blue") +
+  ggtitle("Diamond Price vs. Carat") +
+  xlab("Carat") +
+  ylab("Price") +
+  theme_minimal()
+
+```
