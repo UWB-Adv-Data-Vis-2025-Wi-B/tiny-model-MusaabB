@@ -77,3 +77,11 @@ summary.lm(species_x_temp_lm)
 
 anova(species_lm, species_x_temp_lm)
 ```
+
+## Load the data
+```{r diamonds, echo=FALSE}
+library(ggplot2)
+
+data(diamonds)  
+head(diamonds) 
+```
