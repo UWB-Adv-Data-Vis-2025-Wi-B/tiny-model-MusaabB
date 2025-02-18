@@ -14,3 +14,13 @@ library('tidyverse') ; library('modeldata')
 data(crickets, package = "modeldata")
 names(crickets)
 ```
+
+## What is that sound?
+In this report, we examine what factors predict a cricket's chirp rate.
+
+```{r summary, echo = FALSE}
+summary(crickets)
+``` 
+
+
+
