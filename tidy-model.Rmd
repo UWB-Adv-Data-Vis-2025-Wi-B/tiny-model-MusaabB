@@ -107,7 +107,9 @@ ggplot(diamonds, aes(x = carat, y = price)) +
 
 ```
 
+The carat of the diamond does not fully dictate the price of the diamond, as other factors such as cut, clarity, and color can also determine its value
 
+## Price Distribution by Diamond Cut and Carrat
 ```{r car, echo=FALSE}
 
 ggplot(diamonds, aes(x = carat, y = price, color = cut )) +
@@ -124,6 +126,6 @@ sum <- lm(price ~ carat + cut + clarity, data = diamonds)
 summary.lm(sum)
 anova(species_lm, species_x_temp_lm)
 
-
-
 ```
+
+In this graph, we can see that Ideal is the best type of cut to get, as it tends to cost the most, even when the carat is lower compared to another diamond with a different cut
