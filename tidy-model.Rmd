@@ -3,3 +3,7 @@ title: "tidy-model"
 output: html_document
 ---
 
+```{r load data, include = FALSE}
+data(crickets, package = "modeldata")
+names(crickets)
+```
