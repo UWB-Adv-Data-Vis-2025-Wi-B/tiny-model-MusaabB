@@ -28,4 +28,16 @@ ggplot(crickets, aes(x = rate)) +
 
 There is 14 exclamations and 17 niveous. The minimum temperature is 17.20, and the maximum temperature is 30.40. The mean rate of chirping is 72.89 
 
+## Temperature affects chirp rate
+
+```{r temp, echo= FALSE}
+ggplot(crickets, aes(x = temp, y = rate)) +
+  geom_point() + 
+  geom_smooth(method = 'lm') +
+  ggtitle("Plot of temperature and chirp rate") +
+  ylab('Chirp rate (per min.)') +
+  xlab('Temperature (Celsius)')
+```
+
+Based on a scatter plot of temperature and chirping, it seems that as temperature increases, the rate of chirping also increases.
 
