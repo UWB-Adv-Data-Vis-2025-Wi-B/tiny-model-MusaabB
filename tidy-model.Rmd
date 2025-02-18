@@ -106,3 +106,24 @@ ggplot(diamonds, aes(x = carat, y = price)) +
   theme_minimal()
 
 ```
+
+
+```{r car, echo=FALSE}
+
+ggplot(diamonds, aes(x = carat, y = price, color = cut )) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm") +
+  ggtitle("Price Distribution by Diamond Cut and Carrat") +
+  xlab("Carat") +
+  ylab("Price") +
+  theme_minimal()
+
+
+# summary 
+sum <- lm(price ~ carat + cut + clarity, data = diamonds)
+summary.lm(sum)
+anova(species_lm, species_x_temp_lm)
+
+
+
+```
