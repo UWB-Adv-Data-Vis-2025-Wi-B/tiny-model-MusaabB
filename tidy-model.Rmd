@@ -5,6 +5,10 @@ output: html_document
 ## Introduction
 
 This R Markdown document demonstrates my abilities to use models for data analysis using a data set collected on crickets.
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library('tidyverse') ; library('modeldata')
+``` 
 
 ```{r load data, include = FALSE}
 data(crickets, package = "modeldata")
